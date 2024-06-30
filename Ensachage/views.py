@@ -33,7 +33,7 @@ class list_View(View):
             'liv_total': self.get_object().aggregate(liv=Sum('livraison')),
             'cas_total': self.get_object().aggregate(cas=Sum('casse')),
             'ens_total': self.get_object().aggregate(ens=Sum('ensache')),
-            'tx_cas_total': self.get_object().aggregate(tx_cas=Avg('tx_casse')),
+            'tx_total': self.get_object().aggregate(tx=Avg('tx_casse')),
             'vra_total': self.get_object().aggregate(vra=Sum('vrack')), 
         }
         
