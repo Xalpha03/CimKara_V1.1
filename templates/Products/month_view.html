@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  month
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="">
+      <div class="card">
+        <div class="card-header bg-info bg-gradient text-center">
+          <h1 class="text-light text-uppercase fs-3">tableau recaptulatif</h1>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-dark">
+              <thead class="text-center">
+                <tr class="table-primary">
+                  <th class="text-dark text-uppercase fs-4">date</th>
+                  <th class="text-dark text-uppercase fs-4">chef post</th>
+                  <th class="text-dark text-uppercase fs-4">livraison</th>
+                  <th class="text-dark text-uppercase fs-4">casse</th>
+                  <th class="text-dark text-uppercase fs-4">ensache</th>
+                  <th class="text-dark text-uppercase fs-4">tx_casse</th>
+                  <th class="text-dark text-uppercase fs-4">vrack</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                {% if user.is_superuser %}
+                  {% for i in obj %}
+                    <tr>
+                      <td class="fs-5">ENS_{{ i.created|date:'d/m/o' }}</td>
+                      <td class="fs-5 text-uppercase">{{ i.user }}</td>
+                      <td class="fs-5">{{ i.livraison }}</td>
+                      <td class="fs-5">{{ i.casse }}</td>
+                      <td class="fs-5">{{ i.ensache }}</td>
+                      <td class="fs-5">{{ i.tx_casse|floatformat:2 }}</td>
+                      <td class="fs-5">{{ i.vrack }}</td>
+                    </tr>
+                  {% endfor %}
+                {% endif %}
+              </tbody>
+              <thead class="text-center">
+                <tr class="table-danger">
+                  <th class="text-end text-uppercase fs-4 text-center" colspan="2">total:</th>
+                  <th scope="col" class="fs-4">
+                    {% if liv_total.liv %}
+                      {{ liv_total.liv }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </th>
+                  <th scope="col" class="fs-4">
+                    {% if cas_total.cas %}
+                      {{ cas_total.cas }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </th>
+                  <th scope="col" class="fs-4">
+                    {% if ens_total.ens %}
+                      {{ ens_total.ens }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </th>
+                  <th scope="col" class="fs-4">
+                    {% if tx_total.tx %}
+                      {{ tx_total.tx|floatformat:2 }}
+                    {% else %}
+                      0.0
+                    {% endif %}
+                  </th>
+                  <th scope="col" class="fs-4">
+                    {% if vra_total.vra %}
+                      {{ vra_total.vra|floatformat:2 }}
+                    {% else %}
+                      0.0
+                    {% endif %}
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}/

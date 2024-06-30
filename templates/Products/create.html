@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  create
+{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-center">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet" />
+    <div class="card" style="background-color: #000000; width: 23rem;">
+      <div class="card-header text-center my-4">
+        <h4 class="text-light text-uppercase">register form</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+          <div class="row mb-4">
+            <div class="col">
+              <div data-mdb-input-init class="form-outline">
+                <input readonly type="text" id="form3Example1" class="form-control" name="user" value="{{ user.username }}" required />
+                <label class="form-label" for="form3Example1">User</label>
+              </div>
+            </div>
+            <div class="col">
+              <div data-mdb-input-init class="form-outline">
+                <input type="number" id="form3Example1" class="form-control text-light" name="liv" value="0" required />
+                <label class="form-label text-light" for="form3Example1">Livraison</label>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <div data-mdb-input-init class="form-outline">
+                <input type="number" id="form3Example1" class="form-control text-light" name="cas" value="0" required />
+                <label class="form-label text-light" for="form3Example1">Casse</label>
+              </div>
+            </div>
+            <div class="col">
+              <div data-mdb-input-init class="form-outline">
+                <input type="text" id="form3Example2" class="form-control text-light" name="vra" value="0.0" required />
+                <label class="form-label text-light" for="form3Example2">Vrac</label>
+              </div>
+            </div>
+          </div>
+          <!-- Password input -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="date" id="form3Example4" class="form-control text-light" name="date" value="" required />
+            <label class="form-label text-light" for="form3Example4">Date</label>
+          </div>
+          <!-- Submit button -->
+          <div class="d-flex justify-content-between my-4">
+            <a href="{% url 'details' user=user.username %}" class="btn btn-info text-light">Retour</a>
+            <button data-mdb-ripple-init type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
